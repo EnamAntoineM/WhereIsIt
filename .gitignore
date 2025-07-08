@@ -5,6 +5,7 @@ node_modules
 /package
 .env
 /.vscode
+/.idea
 .env.*
 !.env.example
 vite.config.js.timestamp-*
