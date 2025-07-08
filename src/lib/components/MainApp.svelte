@@ -1,94 +1,53 @@
 <script>
     import { logout, user } from '../stores/auth.js';
-
+    
     // Function to log out
     const handleLogout = () => {
         logout();
     };
 </script>
 
-<div class="main-app">
-    <header class="app-header">
-        <h1>Welcome to your Application!</h1>
-        <div class="user-info">
-            <span>Hello, {$user?.email || 'User'}!</span>
-            <button class="logout-btn" on:click={handleLogout}>
-                <i class="fas fa-sign-out-alt"></i>
-                Logout
+<main class="min-h-screen bg-white">
+    <!--NAVBAR-->
+    <section class="fixed top-0 left-0 h-16 w-full bg-primary text-black p-4 shadow-sm flex justify-between items-center rounded-2xl">
+        <img src="/WIIT-GoldOnWhite.png" alt="WIIT Logo" class="ml-4 w-14">
+        <button class ="bg-gray-100 border border-yellow-50 shadow-sm
+            rounded-2xl hover:bg-gray-200 transition-colors duration-300
+            px-4 py-2 flex items-center gap-2">
+            <i class="fa-solid fa-circle-user"></i>
+            <span class ="text-md font-bold"> Account </span>
+        </button>
+    </section>
+
+    <!--LEFT PANEL-->
+    <section class ="flex flex-col fixed top-16 left-0 w-64 h-[calc(100vh-4rem)]
+        p-3 gap-3 items-center bg-gray-50 shadow-sm rounded-r-md border-r">
+        <div class = "flex flex-col items-center gap-3 w-full">
+            <button class ="shadow-sm rounded-2xl hover:bg-gray-200 transition-colors duration-200
+            p-5 flex items-center text-center w-full gap-2">
+                <i class="fas fa-box"></i>
+                <span class ="text-md font-bold"> My items </span>
+            </button>
+            <button class ="shadow-sm rounded-2xl hover:bg-gray-200 transition-colors duration-200
+            p-5 flex items-center text-center w-full gap-2">
+                <i class="fas fa-chart-line"></i>
+                <span class ="text-md font-bold"> Overview </span>
+            </button>
+            <button class ="shadow-sm rounded-2xl hover:bg-gray-200 transition-colors duration-200
+            p-5 flex items-center text-center w-full gap-2">
+                <i class="fas fa-file-import"></i>
+                <span class ="text-md font-bold"> Import table </span>
+            </button>
+            <button class ="shadow-sm rounded-2xl hover:bg-gray-200 transition-colors duration-200
+            p-5 flex items-center text-center w-full gap-2">
+                <i class="fas fa-file-export"></i>
+                <span class ="text-md font-bold"> Export table </span>
             </button>
         </div>
-    </header>
-
-    <main class="app-content">
-        <div class="dashboard">
-            <h2>Dashboard</h2>
-            <p>This is your main application content!</p>
-            <p>You can build your actual app features here.</p>
-        </div>
-    </main>
-</div>
-
-<style>
-    .main-app {
-        min-height: 100vh;
-        background-color: #f5f5f5;
-    }
-
-    .app-header {
-        background-color: #4891ff;
-        color: white;
-        padding: 1rem 2rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .app-header h1 {
-        margin: 0;
-    }
-
-    .user-info {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .logout-btn {
-        background-color: #dc3545;
-        color: white;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        transition: background-color 0.3s;
-    }
-
-    .logout-btn:hover {
-        background-color: #c82333;
-    }
-
-    .app-content {
-        padding: 2rem;
-    }
-
-    .dashboard {
-        background-color: white;
-        padding: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .dashboard h2 {
-        color: #333;
-        margin-bottom: 1rem;
-    }
-
-    .dashboard p {
-        color: #666;
-        margin-bottom: 1rem;
-    }
-</style>
+        <button class ="shadow-sm rounded-2xl hover:bg-gray-200 transition-colors duration-200
+            p-5 flex items-center text-center w-full bottom-0 gap-2 mt-auto">
+            <i class="fas fa-info-circle"></i>
+            <span class ="text-md font-bold"> About us </span>
+        </button>
+    </section>
+</main>
