@@ -41,8 +41,8 @@
 
 <main class="min-h-screen bg-white">
     <!--NAVBAR-->
-    <section class="fixed top-0 left-0 h-16 w-full bg-primary text-black p-4 shadow-sm
-        flex justify-between items-center rounded-2xl">
+    <section class="fixed top-0 left-0 h-16 w-full bg-primary text-black p-4
+        flex justify-between border-b items-center rounded-2xl">
         <img src="/WIIT-GoldOnWhite.png" alt="WIIT Logo" class="ml-4 w-14">
         <button class ="bg-gray-100 border border-yellow-50 shadow-sm
             rounded-2xl hover:bg-gray-200 transition-colors duration-300
