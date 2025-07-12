@@ -5,6 +5,10 @@
     const handleLogout = () => {
         logout();
     };
+
+    const saveChanges = () => {
+        console.log("Saved items: ", items);
+    };
     // Sample items
     let items = [
         {
@@ -14,7 +18,7 @@
             expiryDate: "2026-06-12",
             location: "Drawer A",
             note: "Bought in bulk",
-            visual: "/images/stapler.jpg"
+            visual: "/WIIT-GoldOnWhite.png"
         },
         {
             name: "Notebook",
@@ -67,6 +71,11 @@
                 <span class ="text-md font-bold"> Overview </span>
             </button>
             <button class ="shadow-sm rounded-2xl hover:bg-gray-200 transition-colors duration-200
+            p-5 flex items-center w-full gap-2" on:click={handleLogout}>
+                <i class="fas fa-ellipsis-h"></i>
+                <span class ="text-md font-bold"> Other items </span>
+            </button>
+            <button class ="shadow-sm rounded-2xl hover:bg-gray-200 transition-colors duration-200
             p-5 flex items-center w-full gap-2">
                 <i class="fas fa-file-import"></i>
                 <span class ="text-md font-bold"> Import table </span>
@@ -114,7 +123,7 @@
             {:else}
                 <div class="overflow-x-auto overflow-y-auto shadow-md rounded-lg">
                     <table class="min-w-full text-sm text-left">
-                        <thead class="bg-yellow-100 text-gray-800 uppercase text-xs">
+                        <thead class="bg-yellow-300 text-gray-800 uppercase text-xs">
                         <tr>
                             {#if selectedFields.name}
                                 <th class="px-4 py-3">Name</th>
@@ -141,24 +150,42 @@
                         </thead>
                         <tbody>
                         {#each items as item}
-                            <tr class="border-t hover:bg-yellow-50">
+                            <tr class="border-t">
                                 {#if selectedFields.name}
-                                    <td class="px-4 py-2">{item.name}</td>
+                                    <td class="px-4 py-2">
+                                        <input type="text" class = "p-2 rounded-xl hover:bg-gray-100 px-4 py-2
+                                            transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-300" bind:value={item.name} />
+                                    </td>
                                 {/if}
                                 {#if selectedFields.units}
-                                    <td class="px-4 py-2">{item.units}</td>
+                                    <td class="px-4 py-2">
+                                        <input type="text" class = "p-2 rounded-xl hover:bg-gray-100
+                                            transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-300" bind:value={item.units} />
+                                    </td>
                                 {/if}
                                 {#if selectedFields.registeredAt}
-                                    <td class="px-4 py-2">{item.registeredAt}</td>
+                                    <td class="px-4 py-2">
+                                        <input type="date" class = "p-2 rounded-xl hover:bg-gray-100
+                                            transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-300" bind:value={item.registeredAt} />
+                                    </td>
                                 {/if}
                                 {#if selectedFields.expiryDate}
-                                    <td class="px-4 py-2">{item.expiryDate || '-'}</td>
+                                    <td class="px-4 py-2">
+                                        <input type="date" class = "p-2 rounded-xl hover:bg-gray-100
+                                            transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-300" bind:value={item.expiryDate} />
+                                    </td>
                                 {/if}
                                 {#if selectedFields.location}
-                                    <td class="px-4 py-2">{item.location}</td>
+                                    <td class="px-4 py-2">
+                                        <input type="text" class = "p-2 rounded-xl hover:bg-gray-100
+                                            transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-300" bind:value={item.location} />
+                                    </td>
                                 {/if}
                                 {#if selectedFields.note}
-                                    <td class="px-4 py-2">{item.note || '-'}</td>
+                                    <td class="px-4 py-2">
+                                        <input type="text" class = "p-2 rounded-xl hover:bg-gray-100 
+                                            transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-300" bind:value={item.note} />
+                                    </td>
                                 {/if}
                                 {#if selectedFields.visual}
                                     <td class="px-4 py-2">
