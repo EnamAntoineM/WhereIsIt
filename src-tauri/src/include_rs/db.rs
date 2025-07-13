@@ -19,9 +19,9 @@ pub fn create_table(table_name: &str) -> Result<()> {
         "CREATE TABLE IF NOT EXISTS \"{}\" (
         name TEXT NOT NULL,
         units INTEGER NOT NULL,
-        registeredAt TEXT NOT NULL,
-        lastModified TEXT,
-        expiryDate TEXT,
+        registered_at TEXT NOT NULL,
+        last_modified TEXT,
+        expiry_date TEXT,
         location TEXT,
         note TEXT,
         visual TEXT,
@@ -73,6 +73,31 @@ pub fn add_item(item: &Item, current_table: &str) -> Result<()> {
     let conn = Connection::open("whereisit.db")?;
     let sql = format!(
         "INSERT INTO \"{}\" (name, units, registered_at, last_modified, expiry_date, location, note, visual, owner)
+        VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)", current_table
+    );
+    conn.execute(
+        &sql, params![
+            item.name,
+            item.units,
+            item.registered_at,
+            item.last_modified,
+            item.expiry_date,
+            item.location,
+            item.note,
+            item.visual,
+            item.owner,
+        ],
+    )?;
+    Ok(())
+}
+
+pub fn update_item(item: &Item, current_table: &str) -> Result<()> {
+    if !current_table.chars().all(|c| c.is_alphanumeric() || c == '_') {
+        return Err (rusqlite::Error::InvalidQuery);
+    }
+    let conn = Connection::open("whereisit.db")?;
+    let sql = format!(
+        "UPDATE \"{}\" (name, units, registered_at, last_modified, expiry_date, location, note, visual, owner)
         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)", current_table
     );
     conn.execute(
