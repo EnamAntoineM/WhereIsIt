@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { login } from "../stores/auth.js";
     import '../../app.css';
     let email = "";
