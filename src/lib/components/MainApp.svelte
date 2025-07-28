@@ -3,7 +3,6 @@
     import { invoke } from '@tauri-apps/api/core';
     import {onMount} from "svelte";
     import { open } from '@tauri-apps/plugin-dialog';
-    import {get} from "svelte/store";
 
     type Item = {
         name: string;
@@ -133,6 +132,7 @@
         if (!newItem.name.trim()) {
             error_popup = "Please enter a name for your item.";
             setTimeout(() => error_popup = "", 3000);
+
             return;
         }
         try {
@@ -166,15 +166,6 @@
             setTimeout(() => error_popup = "", 3000);
         }
     }
-    async function handleDeleteItem(item_id: number) {
-        try {
-            success_popup = await invoke('delete_item_cmd', {itemId: item_id, currentTable: active_table});
-            await get_items();
-        } catch (error) {
-            error_popup = "Failed to delete items: " + error;
-            setTimeout(() => error_popup = "", 3000);
-        }
-    }
     async function selectImage() {
         const selected = await open({
             multiple: false,
@@ -185,6 +176,25 @@
 
         if (typeof selected === 'string') {
             newItem.visual = selected;  // Save image path to your visual field
+        }
+    }
+    async function handleDeleteItem(item_id: number) {
+        try {
+            success_popup = await invoke('delete_item_cmd', {itemId: item_id, currentTable: active_table});
+            setTimeout(() => success_popup = "", 2000);
+            await get_items();
+        } catch (error) {
+            error_popup = "Failed to delete items: " + error;
+            setTimeout(() => error_popup = "", 3000);
+        }
+    }
+    async function handleDeleteTable(tableName: string) {
+        try {
+            success_popup = await invoke('delete_table_cmd', {tableName: tableName});
+            setTimeout(() => success_popup = "", 2000);
+        } catch (error) {
+            error_popup = "Failed to delete table: " + error;
+            setTimeout(() => error_popup = "", 3000);
         }
     }
 

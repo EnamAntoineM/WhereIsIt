@@ -54,3 +54,11 @@ pub fn delete_item_cmd(item_id: i32, current_table: String) -> Result<String, St
         Err(e) => Err(e.to_string()),
     }
 }
+
+#[command]
+pub fn delete_table_cmd(table_name: String) -> Result<String, String> {
+    match delete_table(&table_name) {
+        Ok(_) => Ok("Table deleted successfully".to_string()),
+        Err(e) => Err(e.to_string()),
+    }
+}

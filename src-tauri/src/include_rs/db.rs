@@ -155,6 +155,19 @@ pub fn delete_item(item_id: &i32, current_table: &str) -> Result<()> {
     Ok(())
 }
 
+pub fn delete_table(table_name: &str) -> Result<()> {
+    if !table_name
+        .chars()
+        .all(|c| c.is_alphanumeric() || c == '_')
+    {
+        return Err(rusqlite::Error::InvalidQuery);
+    }
+    let conn = init_db()?;
+    let sql = format!("DROP TABLE \"{}\"", table_name);
+    conn.execute(&sql, [])?;
+    Ok(())
+}
+
 pub fn get_all_items(current_view: &str) -> Result<Vec<MajItem>> {
     let conn = init_db()?;
     if !current_view

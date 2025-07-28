@@ -19,7 +19,8 @@ fn main() {
             search_element_cmd,
             create_table_cmd,
             update_item_cmd,
-            delete_item_cmd
+            delete_item_cmd,
+            delete_table_cmd
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
